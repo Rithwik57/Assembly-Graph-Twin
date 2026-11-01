@@ -1,106 +1,154 @@
 # Assembly Graph Twin
 
-This project builds an explainable de Bruijn graph from FASTA/FASTQ reads, tracks graph evidence across offline batches, and benchmarks bounded bubble-path choices against reference-compatible paths. It is a research prototype, not a complete assembler.
+Assembly Graph Twin is a beginner-friendly research prototype for turning DNA read files into an explainable de Bruijn graph, tracking graph evidence, and checking graph paths against a reference genome. It is not a production genome assembler and does not produce finished contigs.
 
-## Project layout
+This guide walks from a fresh clone through a small local demo, downloading real reads and a matching reference, then running the Colab notebook on a T4 GPU.
 
-- `assembly_graph_twin.py`, `benchmark.py`, `path_model.py`: command-line application and implementation modules.
-- `tests/`: unit and behavior checks.
-- `fixtures/`: small deterministic synthetic fixtures used for positive-control checks.
-- `config/`: benchmark protocol and configuration.
-- `data/reads/`, `data/references/`: locally downloaded datasets and references; they are not required to run the synthetic demo.
-- `reports/demo/`, `reports/checks/`: current generated reports.
-- `reports/legacy_benchmarks/`: earlier benchmark reports made with the forward-only graph. Keep these separate from the strand-aware results.
+## 1. What you need
 
-Run commands from this project folder, or prefix paths with `assembly_graph_twin/` from the repository root.
+- Windows 10/11, macOS, or Linux for cloning and local setup.
+- Git installed.
+- Python 3.10 or newer installed and available as `python`.
+- A Google account with Google Drive and Google Colab access for the T4 run.
 
-## Strand-aware de Bruijn graph
+The local demo and standard graph tools use only Python's standard library; no `pip install` is needed. The notebook uses the PyTorch already available in Colab. The downloaded dataset files are intentionally not stored in GitHub because read files can be large.
 
-Graph construction now defaults to `--strand-mode bidirected`. It represents the bidirected graph as a directed double-cover: for each observed transition `u -> v`, it adds the valid reverse-complement twin `rc(v) -> rc(u)`. It never reverses an isolated edge without complementing and reversing its endpoints. The mirror transition carries the same physical read support, so it is not counted as a second read. Reverse-complement views of a bubble share one canonical candidate ID and are reported once.
+## 2. Clone the project
 
-This follows the standard double-stranded/bidirected de Bruijn graph model used in assembly work, including BCALM 2 and Cuttlefish 2, while keeping the prototype’s existing path traversal straightforward. The representation is not a compact canonical-k-mer graph and can use more memory than a canonical node/port implementation. Reports show both oriented node/edge counts and counts collapsed across reverse-complement pairs; component and complete-candidate summaries collapse mirror views. Bounded-search-limit events are still counted per oriented search, so mirror searches may both appear. Support counts refer to oriented graph transitions; do not sum a transition and its reverse-complement twin as independent molecules. [BCALM 2](https://pmc.ncbi.nlm.nih.gov/articles/PMC4908363/) describes bidirected graph compaction for double-stranded DNA; [Cuttlefish 2](https://pmc.ncbi.nlm.nih.gov/articles/PMC9454175/) uses canonical k-mer forms in a bidirected edge-centric graph.
+Open Command Prompt or PowerShell and run:
 
-Use `--strand-mode forward` only to reproduce old forward-only behavior. New benchmark comparisons should use the default `bidirected` mode and record it with the run.
-
-## Run the synthetic demo
-
-```powershell
-python assembly_graph_twin.py demo --output reports/demo/demo_report.json
+```cmd
+git clone https://github.com/Rithwik57/Assembly-Graph-Twin.git
+cd Assembly-Graph-Twin
+python --version
 ```
 
-The demo creates two snapshots from synthetic reads, then prints graph summaries, the synthetic bubble's divergence/rejoin and paths, and branch support. This is a controlled positive example, not a result from a real dataset. The benchmark continues to report zero bubbles when none are found in the supplied reads.
+The project folder contains `assembly_graph_twin.py`, `benchmark.py`, `gpu_backend.py`, `notebooks/`, `data/`, and `reports/`. If `python --version` is older than 3.10, install a newer Python release and reopen the terminal.
 
-## Check the benchmark pipeline
+## 3. Run the built-in demo first
 
-```powershell
-python check_benchmark_fixture.py --output reports/checks/known_bubble_fixture_report.json
+The demo uses synthetic reads, so it works before downloading any data:
+
+```cmd
+python assembly_graph_twin.py demo --output reports\demo\demo_report.json
 ```
 
-The positive control has known branches and a tiny reference. The check repeats the same seeded run and fails if no candidate or unique reference-compatible path is found, or if candidate evidence is nondeterministic. These are proxy labels on a synthetic fixture, not biological measurements.
+It prints two graph snapshots and an example synthetic bubble. This confirms that Python can run the project; it is not a result from biological data.
 
-Run unit checks with:
+## 4. Download real reads and a matching reference
 
-```powershell
-python -m unittest discover -s tests -p "test_*.py" -v
-```
+Use one read dataset and the reference for the same organism/strain. The project does **not** include either file after cloning. Downloaded files belong in `data/reads/` and `data/references/`; the existing `.gitignore` keeps them local and out of future Git commits.
 
-## Analyze and replay reads
+### Recommended first real-data run: compact *S. aureus* sample
 
-```powershell
-python assembly_graph_twin.py analyze data/reads/SRR31691735_1.fastq.gz --k 31 --output reports/demo/sa_analysis.json
-python assembly_graph_twin.py replay batch_001.fastq.gz batch_002.fastq.gz --k 31 --output reports/demo/replay.json
-```
-
-FASTA/FASTQ gzip input is supported. Read identifiers must be unique across cumulative batches. FASTQ quality is descriptive metadata. Replay is offline and deterministic for unchanged input files and settings.
-
-## Reference benchmark
-
-The frozen defaults and validation gates are in `config/benchmark_protocol.json`. Candidate labels are **reference-compatibility proxies**, not variant truth. The lightweight seed-and-extend path aligner accepts paths at the configured identity threshold and leaves ambiguous or unsupported candidates unlabeled. It is not a production read aligner.
-
-Example using the locally saved *S. aureus* sample and its reference:
+The Colab notebook is preconfigured for run `SRR31691735` and its *Staphylococcus aureus* reference. In PowerShell, from the cloned project folder, download the FASTQ link from ENA and the reference FASTA from NCBI:
 
 ```powershell
-python assembly_graph_twin.py benchmark --reads data/reads/SRR31691735_1.fastq.gz --reference data/references/sa_reference.fa --k 31 --max-reads 100 --seed 1 --dataset-id sa-atcc43300 --output reports/benchmarks/sa-atcc43300-100.json
+$api = "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRR31691735&result=read_run&fields=run_accession,fastq_ftp&format=tsv"
+$report = Invoke-RestMethod -Uri $api
+$row = ($report -split "`n" | Select-Object -Skip 1 -First 1).Trim()
+$readUrl = (($row -split "`t")[1] -split ";")[0]
+$readUrl = $readUrl -replace "^ftp://", "https://"
+if ($readUrl -notmatch "^https?://") { $readUrl = "https://$readUrl" }
+curl.exe -L --fail --retry 3 $readUrl -o "data\reads\SRR31691735_1.fastq.gz"
+
+curl.exe -L --fail --retry 3 "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=CP178839.1&rettype=fasta&retmode=text" -o "data\references\sa_reference.fa"
 ```
 
-With `--max-reads`, SHA-256 bottom-k sampling gives nested, input-order-independent subsets for a fixed seed. Reports include tips, branch/repeat signals, disconnected components, bounded-search limits, candidate evidence, labels, runtime, and Python traced peak memory. They also include a reference-backed read/edge validation summary: reads are placed using sampled exact-seed anchors on both strands, uniquely placed read bases and estimated reference breadth are reported, and graph edges traversed by uniquely placed reads are counted.
+ENA lists `SRR31691735` as an Oxford Nanopore *S. aureus* run; the reference accession used by this project is `CP178839.1`. [ENA run record](https://www.ncbi.nlm.nih.gov/sra/SRX27053554%5Baccn%5D), [NCBI reference sequence](https://www.ncbi.nlm.nih.gov/nuccore/CP178839.1).
 
-The read placements and breadth are explicitly **estimates**, not gapped alignments or base-level consensus. The index samples reference seeds every 12 bases and queries reads at multiple offsets to limit Python memory and runtime; it is not a production mapper. A zero-bubble run can still report reference placement, breadth, and edge support. A zero-candidate run has undefined bubble accuracy and coverage, not a zero-error score. Increase read limits cautiously and watch memory.
+Check that both files exist:
 
-Benchmark accuracy measures path choice among candidates with exactly one reference-compatible branch. It is a graph-level baseline, not an assembly evaluation; the tool does not emit contigs. Held-out species, comparison with a pinned assembler, and reference-based assembly evaluation remain pending gates. Multiple subsets from one genome do not establish species-level generalization.
-
-## Optional PyTorch k-mer backend and Google Colab
-
-The default graph implementation remains standard-library CPU code. An optional PyTorch backend runs k-mer window encoding, per-read edge deduplication, read/node-support aggregation, and compact adjacency construction on CUDA, then transfers each distinct graph edge once into the compact CPU graph. This avoids sending every read-edge observation through Python one by one. Use `--graph-backend torch --device cuda` to request CUDA explicitly; it errors if CUDA is unavailable. `--device auto` selects CUDA when available and otherwise uses PyTorch on CPU.
-
-K-mer encoding, per-read deduplication, edge/node support aggregation, and adjacency CSR construction run on the GPU. String-keyed graph materialization, bubble searches, diagnostics, reference placement, and path labeling remain CPU work, so the overall speedup depends on which stage dominates a run. Progress messages identify the active phase; the report records time spent in selection, graph construction, diagnostics, and reference validation, plus peak CUDA memory. The notebook disables Python allocation tracing for runtime; use `--no-python-memory-tracing` in other large runs if tracing overhead is too high (the Python peak-memory metric is then null). The reference anchor length is independent of graph `k` (up to 15 bases), and the index is sparse to avoid excessive Python allocations. This does not promise exponential acceleration, and GPU memory does not replace system RAM. The PyTorch dependency stays optional; default CLI behavior is unchanged.
-
-Example:
-
-```powershell
-python assembly_graph_twin.py benchmark --reads data/reads/SRR31691735_1.fastq.gz --reference data/references/sa_reference.fa --k 15 --max-reads 50 --seed 1 --dataset-id sa-atcc43300-k15-gpu --graph-backend torch --device cuda --output reports/benchmarks/sa-atcc43300-k15-gpu.json
+```cmd
+dir data\reads\SRR31691735_1.fastq.gz
+dir data\references\sa_reference.fa
 ```
 
-The report records `graph_backend`, `graph_device`, and `graph_construction_seconds` so CPU and CUDA runs can be compared.
+### Optional master-plan anchor: *E. coli* K-12 MG1655
 
-The Colab notebook is a hosted runner for the existing CLI; it does not duplicate or replace the graph implementation:
+For the planned *E. coli* benchmark, download the Loman Lab ONT reads and matching reference instead. The read FASTA is about 1.5 GB, so allow time and disk space:
 
-The Colab notebook is a hosted runner for the existing CLI; it does not duplicate or replace the graph implementation:
-
-```text
-notebooks/colab_benchmark.ipynb
+```cmd
+curl.exe -L --fail --retry 3 "https://s3.climb.ac.uk/nanopore/E_coli_K12_1D_R9.2_SpotON_2.pass.fasta" -o "data\reads\ecoli_reads.fasta"
+curl.exe -L --fail --retry 3 "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_000913.3&rettype=fasta&retmode=text" -o "data\references\ecoli_reference.fa"
 ```
 
-Copy the `assembly_graph_twin` project folder to Google Drive, open the notebook in Colab, and run its setup and path-configuration cells. The defaults expect the project at `MyDrive/assembly_graph_twin` and use the bundled *S. aureus* read/reference paths. Change `PROJECT_DIR`, `READS_PATH`, or `REFERENCE_PATH` in the notebook if your Drive layout differs. The notebook saves reports under `reports/benchmarks/colab/`.
+The *E. coli* read file and reference must be used together. For the notebook, change `READS_PATH`, `REFERENCE_PATH`, and `DATASET_ID` in its configuration cell to these `ecoli_*` names. [Loman Lab read dataset](https://lab.loman.net/2016/07/30/nanopore-r9-data-release/), [NCBI reference NC_000913.3](https://www.ncbi.nlm.nih.gov/nuccore/NC_000913.3).
 
-Begin with the 50-read smoke run, inspect runtime and peak memory, and only then run the optional 250-read cell. Select **Runtime > Change runtime type > T4 GPU** before running the notebook. It requests the PyTorch CUDA backend and displays the detected GPU. The notebook invokes `assembly_graph_twin.py benchmark` through a subprocess, so the command-line workflow remains available and unchanged.
+## 5. Optional local benchmark check
 
-## Optional PyTorch path scorer
+From the project folder, the smaller *S. aureus* subset can be checked on your computer:
 
-The standard graph workflow has no non-standard dependencies. To install the optional scorer:
+```cmd
+python assembly_graph_twin.py benchmark --reads data\reads\SRR31691735_1.fastq.gz --reference data\references\sa_reference.fa --k 15 --max-reads 50 --seed 1 --dataset-id sa-atcc43300-smoke --output reports\benchmarks\sa-smoke.json
+```
 
-```powershell
+`--max-reads 50` controls how many reads are used to build the graph. To select a reproducible subset, the program still scans the input file, so this command can take a while even with 50 selected reads. The benchmark reports diagnostics and reference-compatibility proxy labels; it does not claim biological variant truth.
+
+## 6. Put the project and downloaded data in Google Drive
+
+The notebook runs the project code from Google Drive and expects the data files to be in the project’s `data/` folders.
+
+1. In Google Drive, create or open `MyDrive`.
+2. Upload the entire cloned `Assembly-Graph-Twin` folder, including the downloaded files under `data/reads/` and `data/references/`.
+3. For the default *S. aureus* notebook settings, rename the uploaded project folder to `assembly_graph_twin`, or plan to edit `PROJECT_DIR` in the notebook.
+4. In Drive, open `assembly_graph_twin/notebooks/colab_benchmark.ipynb`. Choose **Open with → Google Colaboratory** if prompted.
+
+The `.gitignore` only affects Git. It does not prevent you from uploading your local read/reference files to Drive. The *E. coli* FASTA is much larger than the *S. aureus* FASTQ; uploading or processing it can take longer.
+
+## 7. Select the T4 GPU and configure the notebook
+
+In Colab, select **Runtime → Change runtime type → T4 GPU**, save, and reconnect if Colab asks. Then run the notebook cells from the top, in order:
+
+1. **Mount Google Drive**: approve the Drive access prompt.
+2. **Configure project and input paths**: the defaults are:
+   - `PROJECT_DIR = /content/drive/MyDrive/assembly_graph_twin`
+   - `READS_PATH = .../data/reads/SRR31691735_1.fastq.gz`
+   - `REFERENCE_PATH = .../data/references/sa_reference.fa`
+   - `GRAPH_BACKEND = "torch"` and `DEVICE = "cuda"`
+3. **Preflight**: confirm the project files and protocol version all show `OK`; it also prints the detected GPU name. If your Drive folder is named differently, change `PROJECT_DIR` before running this cell. If you use the *E. coli* files, change the two input paths and `DATASET_ID` here too.
+4. **Run the benchmark**: leave the initial `MAX_READS = 50` smoke run in place. The cell streams progress messages as it scans reads and advances through graph construction, diagnostics, and reference checks.
+
+At the end, look for `CUDA confirmed`, `graph_backend: torch`, and `graph_device: cuda`. The report should show nonzero peak CUDA memory. Those confirm that CUDA operations ran on the T4. Increase to the notebook's separate 250-read run only after the smoke run finishes and you have reviewed its runtime and memory.
+
+### What the T4 accelerates
+
+CUDA performs k-mer encoding, per-read edge deduplication, edge/node support aggregation, and adjacency-index construction. Python graph-key creation, bubble searches, diagnostics, reference placement, and path labeling still run on the CPU. The report gives stage timings and CUDA memory use. This is a mixed CPU/GPU pipeline; a T4 does not guarantee every run will be faster, and GPU memory does not replace system RAM.
+
+## Other commands
+
+Analyze one read file:
+
+```cmd
+python assembly_graph_twin.py analyze data\reads\SRR31691735_1.fastq.gz --k 31 --output reports\demo\sa_analysis.json
+```
+
+Replay ordered read batches (each file should contain distinct read IDs):
+
+```cmd
+python assembly_graph_twin.py replay batch_001.fastq.gz batch_002.fastq.gz --k 31 --output reports\demo\replay.json
+```
+
+## How to read benchmark results
+
+- A bubble is a graph structure with diverging paths that reconverge; it is not automatically a biological variant.
+- Candidate labels mean a path is compatible with the supplied reference under the prototype's approximate aligner. They are not validated variant truth.
+- A zero-candidate result means no complete bubble was reported under the selected settings; it does not mean the genome has no variation.
+- The program is a research prototype and does not output a finished assembly.
+- The optional path model is not required to run the demo, analysis, replay, or benchmark workflows.
+
+## Graph and strand model
+
+Graph construction defaults to `--strand-mode bidirected`. It represents reverse-complement transitions as a directed double-cover: for an observed transition `u -> v`, it adds the valid twin `rc(v) -> rc(u)`. It does not reverse an isolated edge without also reversing and complementing its endpoints. The twin carries the same physical read support and is not counted as another molecule.
+
+This keeps traversal straightforward but is not a compact canonical-k-mer or node-side-port graph. The representation can use more memory than a canonical implementation. Reports include oriented and reverse-complement-collapsed counts where available. Do not sum support for a transition and its twin as if they were independent reads. Use `--strand-mode forward` only to reproduce earlier forward-only behavior.
+
+## Optional path model
+
+The standard workflows need no third-party packages. The optional path scorer has separate dependencies listed in `requirements-ml.txt`:
+
+```cmd
 python -m pip install -r requirements-ml.txt
 ```
 
-The model is a small multilayer perceptron over graph-derived path features, not a full message-passing GNN or a validated assembler. Training and calibration require enough uniquely labeled candidates from disjoint genomes. Until that evidence exists, model development remains deferred.
+It is a small multilayer perceptron over graph-derived path features, not a full message-passing GNN or a validated assembler. Training and calibration require enough uniquely labeled candidates from disjoint genomes; model evaluation remains a later research milestone.

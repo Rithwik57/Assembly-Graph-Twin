@@ -1,0 +1,1964 @@
+{
+  "demonstration": {
+    "type": "synthetic_positive_control",
+    "represents_real_sample_data": false,
+    "bubble_count_by_snapshot": {
+      "initial_reads": 2,
+      "after_bridge_reads": 2
+    },
+    "example_bubble": {
+      "start": "AA",
+      "branches": [
+        "AC",
+        "AG"
+      ],
+      "rejoin": "GG",
+      "paths": {
+        "AC": [
+          "AA",
+          "AC",
+          "CG",
+          "GG"
+        ],
+        "AG": [
+          "AA",
+          "AG",
+          "GG"
+        ]
+      },
+      "path_read_support": {
+        "AC": [],
+        "AG": [
+          "bridge_variant",
+          "variant_3"
+        ]
+      },
+      "branch_support": {
+        "AC": 8,
+        "AG": 3
+      },
+      "search_depth": 3,
+      "max_nodes": 64,
+      "branch_search_limited": {
+        "AC": true,
+        "AG": true
+      },
+      "reason": "two or more outgoing paths reconverge nearby",
+      "candidate_id": "bubble-d3f3530634ae6675",
+      "relationships": [
+        {
+          "candidate_id": "bubble-c13fb546c289e1dc",
+          "type": "overlapping",
+          "shared_internal_nodes": [
+            "CG"
+          ],
+          "shared_edges": [
+            "AC->CG"
+          ]
+        }
+      ]
+    }
+  },
+  "snapshots": [
+    {
+      "snapshot_id": 1,
+      "label": "initial reads",
+      "source": "synthetic",
+      "timestamp_utc": "2026-10-17T16:46:00.720969+00:00",
+      "input_sha256": "5ed05dc62aed2c0aa05753bb9a20737a96ee2eeaddf11adca2070b1d7797d098",
+      "batch_sha256": "5ed05dc62aed2c0aa05753bb9a20737a96ee2eeaddf11adca2070b1d7797d098",
+      "graph_sha256": "fdeb35d1cdad38d580618bef9aa60304f8844ac53b05492e2a09af70f486147e",
+      "read_count": 13,
+      "batch_read_count": 13,
+      "state_delta": {
+        "added_read_ids": [
+          "error_tip",
+          "main_1",
+          "main_2",
+          "main_3",
+          "main_4",
+          "main_5",
+          "main_6",
+          "repeat_support_1",
+          "repeat_support_2",
+          "variant_1",
+          "variant_2",
+          "variant_3",
+          "variant_4"
+        ],
+        "added_nodes": [
+          "AA",
+          "AC",
+          "AG",
+          "CA",
+          "CC",
+          "CG",
+          "CT",
+          "GA",
+          "GG",
+          "GT",
+          "TA",
+          "TC",
+          "TG",
+          "TT"
+        ],
+        "added_edges": [
+          [
+            "AA",
+            "AA"
+          ],
+          [
+            "AA",
+            "AC"
+          ],
+          [
+            "AA",
+            "AG"
+          ],
+          [
+            "AC",
+            "CA"
+          ],
+          [
+            "AC",
+            "CC"
+          ],
+          [
+            "AC",
+            "CG"
+          ],
+          [
+            "AG",
+            "GG"
+          ],
+          [
+            "CC",
+            "CG"
+          ],
+          [
+            "CC",
+            "CT"
+          ],
+          [
+            "CG",
+            "GG"
+          ],
+          [
+            "CG",
+            "GT"
+          ],
+          [
+            "CT",
+            "TT"
+          ],
+          [
+            "GG",
+            "GA"
+          ],
+          [
+            "GG",
+            "GT"
+          ],
+          [
+            "GT",
+            "TT"
+          ],
+          [
+            "TA",
+            "AA"
+          ],
+          [
+            "TC",
+            "CC"
+          ],
+          [
+            "TG",
+            "GT"
+          ],
+          [
+            "TT",
+            "TA"
+          ],
+          [
+            "TT",
+            "TT"
+          ]
+        ],
+        "edge_support_increases": []
+      },
+      "long_read_count": 0,
+      "bubble_depth": 3,
+      "max_bubble_search_nodes": 64,
+      "strand_mode": "bidirected",
+      "metrics": {
+        "k": 3,
+        "strand_mode": "bidirected",
+        "node_count": 14,
+        "edge_count": 20,
+        "strand_collapsed_node_count": 8,
+        "strand_collapsed_edge_count": 10,
+        "component_count": 1,
+        "branching_node_count": 4
+      },
+      "diagnostics": [
+        {
+          "type": "tip",
+          "label": "error",
+          "heuristic_score": 0.86,
+          "evidence": {
+            "node": "CA",
+            "coverage": 1,
+            "reason": "terminal node has support from at most one read"
+          },
+          "reason": "Low-support terminal graph structure is suspicious for a sequencing error."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "AA",
+            "coverage": 9,
+            "in_degree": 2,
+            "out_degree": 3,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "AC",
+            "coverage": 8,
+            "in_degree": 1,
+            "out_degree": 3,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.65,
+          "evidence": {
+            "node": "AG",
+            "coverage": 3,
+            "in_degree": 1,
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "CC",
+            "coverage": 5,
+            "in_degree": 2,
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "CG",
+            "coverage": 5,
+            "in_degree": 2,
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.65,
+          "evidence": {
+            "node": "TA",
+            "coverage": 3,
+            "in_degree": 1,
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "bubble",
+          "label": "true_variant_or_unresolved",
+          "heuristic_score": 0.7,
+          "evidence": {
+            "start": "AA",
+            "branches": [
+              "AC",
+              "AG"
+            ],
+            "rejoin": "GG",
+            "paths": {
+              "AC": [
+                "AA",
+                "AC",
+                "CG",
+                "GG"
+              ],
+              "AG": [
+                "AA",
+                "AG",
+                "GG"
+              ]
+            },
+            "path_read_support": {
+              "AC": [],
+              "AG": [
+                "variant_3"
+              ]
+            },
+            "branch_support": {
+              "AC": 6,
+              "AG": 2
+            },
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "AC": true,
+              "AG": true
+            },
+            "reason": "two or more outgoing paths reconverge nearby",
+            "candidate_id": "bubble-d3f3530634ae6675",
+            "relationships": [
+              {
+                "candidate_id": "bubble-c13fb546c289e1dc",
+                "type": "overlapping",
+                "shared_internal_nodes": [
+                  "CG"
+                ],
+                "shared_edges": [
+                  "AC->CG"
+                ]
+              }
+            ]
+          },
+          "reason": "Reconverging paths may represent a real variant, haplotypes, or insufficient evidence; the score is a structural heuristic, not a probability."
+        },
+        {
+          "type": "bubble",
+          "label": "true_variant_or_unresolved",
+          "heuristic_score": 0.7,
+          "evidence": {
+            "start": "AC",
+            "branches": [
+              "CC",
+              "CG"
+            ],
+            "rejoin": "TT",
+            "paths": {
+              "CC": [
+                "AC",
+                "CC",
+                "CT",
+                "TT"
+              ],
+              "CG": [
+                "AC",
+                "CG",
+                "GT",
+                "TT"
+              ]
+            },
+            "path_read_support": {
+              "CC": [],
+              "CG": []
+            },
+            "branch_support": {
+              "CC": 2,
+              "CG": 3
+            },
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "CC": true,
+              "CG": true
+            },
+            "reason": "two or more outgoing paths reconverge nearby",
+            "candidate_id": "bubble-c13fb546c289e1dc",
+            "relationships": [
+              {
+                "candidate_id": "bubble-d3f3530634ae6675",
+                "type": "overlapping",
+                "shared_internal_nodes": [
+                  "CG"
+                ],
+                "shared_edges": [
+                  "AC->CG"
+                ]
+              }
+            ]
+          },
+          "reason": "Reconverging paths may represent a real variant, haplotypes, or insufficient evidence; the score is a structural heuristic, not a probability."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "AC",
+            "branches": [
+              "CA",
+              "CC"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "CA": false,
+              "CC": true
+            },
+            "branch_limit_reason": {
+              "CA": null,
+              "CC": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "AC",
+            "branches": [
+              "CA",
+              "CG"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "CA": false,
+              "CG": true
+            },
+            "branch_limit_reason": {
+              "CA": null,
+              "CG": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "CG",
+            "branches": [
+              "GG",
+              "GT"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "GG": false,
+              "GT": true
+            },
+            "branch_limit_reason": {
+              "GG": null,
+              "GT": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "GG",
+            "branches": [
+              "GA",
+              "GT"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "GA": false,
+              "GT": true
+            },
+            "branch_limit_reason": {
+              "GA": null,
+              "GT": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        }
+      ],
+      "graph": {
+        "strand_mode": "bidirected",
+        "k": 3,
+        "nodes": [
+          {
+            "sequence": "AA",
+            "coverage": 9,
+            "incoming": [
+              "AA",
+              "TA"
+            ],
+            "outgoing": [
+              "AA",
+              "AC",
+              "AG"
+            ],
+            "supporting_reads": [
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "main_6",
+              "variant_1",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 9
+          },
+          {
+            "sequence": "AC",
+            "coverage": 8,
+            "incoming": [
+              "AA"
+            ],
+            "outgoing": [
+              "CA",
+              "CC",
+              "CG"
+            ],
+            "supporting_reads": [
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_3",
+              "main_4",
+              "main_5",
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 8
+          },
+          {
+            "sequence": "AG",
+            "coverage": 3,
+            "incoming": [
+              "AA"
+            ],
+            "outgoing": [
+              "GG"
+            ],
+            "supporting_reads": [
+              "variant_2",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 3
+          },
+          {
+            "sequence": "CA",
+            "coverage": 1,
+            "incoming": [
+              "AC"
+            ],
+            "outgoing": [],
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1
+          },
+          {
+            "sequence": "CC",
+            "coverage": 5,
+            "incoming": [
+              "AC",
+              "TC"
+            ],
+            "outgoing": [
+              "CG",
+              "CT"
+            ],
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2",
+              "variant_1",
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 5
+          },
+          {
+            "sequence": "CG",
+            "coverage": 5,
+            "incoming": [
+              "AC",
+              "CC"
+            ],
+            "outgoing": [
+              "GG",
+              "GT"
+            ],
+            "supporting_reads": [
+              "main_2",
+              "main_3",
+              "main_4",
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 5
+          },
+          {
+            "sequence": "CT",
+            "coverage": 3,
+            "incoming": [
+              "CC"
+            ],
+            "outgoing": [
+              "TT"
+            ],
+            "supporting_reads": [
+              "variant_2",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 3
+          },
+          {
+            "sequence": "GA",
+            "coverage": 2,
+            "incoming": [
+              "GG"
+            ],
+            "outgoing": [],
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2
+          },
+          {
+            "sequence": "GG",
+            "coverage": 5,
+            "incoming": [
+              "AG",
+              "CG"
+            ],
+            "outgoing": [
+              "GA",
+              "GT"
+            ],
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2",
+              "variant_1",
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 5
+          },
+          {
+            "sequence": "GT",
+            "coverage": 8,
+            "incoming": [
+              "CG",
+              "GG",
+              "TG"
+            ],
+            "outgoing": [
+              "TT"
+            ],
+            "supporting_reads": [
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_3",
+              "main_4",
+              "main_5",
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 8
+          },
+          {
+            "sequence": "TA",
+            "coverage": 3,
+            "incoming": [
+              "TT"
+            ],
+            "outgoing": [
+              "AA"
+            ],
+            "supporting_reads": [
+              "main_5",
+              "main_6",
+              "variant_4"
+            ],
+            "support_count": 3
+          },
+          {
+            "sequence": "TC",
+            "coverage": 2,
+            "incoming": [],
+            "outgoing": [
+              "CC"
+            ],
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2
+          },
+          {
+            "sequence": "TG",
+            "coverage": 1,
+            "incoming": [],
+            "outgoing": [
+              "GT"
+            ],
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1
+          },
+          {
+            "sequence": "TT",
+            "coverage": 9,
+            "incoming": [
+              "CT",
+              "GT",
+              "TT"
+            ],
+            "outgoing": [
+              "TA",
+              "TT"
+            ],
+            "supporting_reads": [
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "main_6",
+              "variant_1",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 9
+          }
+        ],
+        "edges": [
+          {
+            "source": "AA",
+            "target": "AA",
+            "kmer": "AAA",
+            "supporting_reads": [
+              "main_1"
+            ],
+            "support_count": 1,
+            "quality_support": 1.0
+          },
+          {
+            "source": "AA",
+            "target": "AC",
+            "kmer": "AAC",
+            "supporting_reads": [
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "variant_1"
+            ],
+            "support_count": 6,
+            "quality_support": 5.35
+          },
+          {
+            "source": "AA",
+            "target": "AG",
+            "kmer": "AAG",
+            "supporting_reads": [
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "AC",
+            "target": "CA",
+            "kmer": "ACA",
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1,
+            "quality_support": 0.35
+          },
+          {
+            "source": "AC",
+            "target": "CC",
+            "kmer": "ACC",
+            "supporting_reads": [
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "AC",
+            "target": "CG",
+            "kmer": "ACG",
+            "supporting_reads": [
+              "main_2",
+              "main_3",
+              "main_4"
+            ],
+            "support_count": 3,
+            "quality_support": 3.0
+          },
+          {
+            "source": "AG",
+            "target": "GG",
+            "kmer": "AGG",
+            "supporting_reads": [
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "CC",
+            "target": "CG",
+            "kmer": "CCG",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "CC",
+            "target": "CT",
+            "kmer": "CCT",
+            "supporting_reads": [
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "CG",
+            "target": "GG",
+            "kmer": "CGG",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "CG",
+            "target": "GT",
+            "kmer": "CGT",
+            "supporting_reads": [
+              "main_2",
+              "main_3",
+              "main_4"
+            ],
+            "support_count": 3,
+            "quality_support": 3.0
+          },
+          {
+            "source": "CT",
+            "target": "TT",
+            "kmer": "CTT",
+            "supporting_reads": [
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "GG",
+            "target": "GA",
+            "kmer": "GGA",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "GG",
+            "target": "GT",
+            "kmer": "GGT",
+            "supporting_reads": [
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "GT",
+            "target": "TT",
+            "kmer": "GTT",
+            "supporting_reads": [
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "variant_1"
+            ],
+            "support_count": 6,
+            "quality_support": 5.35
+          },
+          {
+            "source": "TA",
+            "target": "AA",
+            "kmer": "TAA",
+            "supporting_reads": [
+              "main_5",
+              "main_6",
+              "variant_4"
+            ],
+            "support_count": 3,
+            "quality_support": 3.0
+          },
+          {
+            "source": "TC",
+            "target": "CC",
+            "kmer": "TCC",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "TG",
+            "target": "GT",
+            "kmer": "TGT",
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1,
+            "quality_support": 0.35
+          },
+          {
+            "source": "TT",
+            "target": "TA",
+            "kmer": "TTA",
+            "supporting_reads": [
+              "main_5",
+              "main_6",
+              "variant_4"
+            ],
+            "support_count": 3,
+            "quality_support": 3.0
+          },
+          {
+            "source": "TT",
+            "target": "TT",
+            "kmer": "TTT",
+            "supporting_reads": [
+              "main_1"
+            ],
+            "support_count": 1,
+            "quality_support": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": 2,
+      "label": "after bridge reads",
+      "source": "synthetic",
+      "timestamp_utc": "2026-10-17T16:46:00.722618+00:00",
+      "input_sha256": "b2c2e723d849bc1cf0f8beef9fff347c31380c322a0463378fd64ba696933312",
+      "batch_sha256": "18c06b151f549ca0c56cd9057cce7b414d313deb95c30eda870e125861060a6d",
+      "graph_sha256": "2de5956a254f834910de0f0a1c14e901136480c82f7e316a06f680351ccffa5f",
+      "read_count": 15,
+      "batch_read_count": 2,
+      "state_delta": {
+        "added_read_ids": [
+          "bridge_reference",
+          "bridge_variant"
+        ],
+        "added_nodes": [],
+        "added_edges": [],
+        "edge_support_increases": [
+          {
+            "source": "AA",
+            "target": "AA",
+            "new_read_ids": [
+              "bridge_reference",
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "AA",
+            "target": "AC",
+            "new_read_ids": [
+              "bridge_reference",
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "AA",
+            "target": "AG",
+            "new_read_ids": [
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "AC",
+            "target": "CC",
+            "new_read_ids": [
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "AC",
+            "target": "CG",
+            "new_read_ids": [
+              "bridge_reference"
+            ]
+          },
+          {
+            "source": "AG",
+            "target": "GG",
+            "new_read_ids": [
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "CC",
+            "target": "CT",
+            "new_read_ids": [
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "CG",
+            "target": "GT",
+            "new_read_ids": [
+              "bridge_reference"
+            ]
+          },
+          {
+            "source": "CT",
+            "target": "TT",
+            "new_read_ids": [
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "GG",
+            "target": "GT",
+            "new_read_ids": [
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "GT",
+            "target": "TT",
+            "new_read_ids": [
+              "bridge_reference",
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "TA",
+            "target": "AA",
+            "new_read_ids": [
+              "bridge_reference",
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "TT",
+            "target": "TA",
+            "new_read_ids": [
+              "bridge_reference",
+              "bridge_variant"
+            ]
+          },
+          {
+            "source": "TT",
+            "target": "TT",
+            "new_read_ids": [
+              "bridge_reference",
+              "bridge_variant"
+            ]
+          }
+        ]
+      },
+      "long_read_count": 2,
+      "bubble_depth": 3,
+      "max_bubble_search_nodes": 64,
+      "strand_mode": "bidirected",
+      "metrics": {
+        "k": 3,
+        "strand_mode": "bidirected",
+        "node_count": 14,
+        "edge_count": 20,
+        "strand_collapsed_node_count": 8,
+        "strand_collapsed_edge_count": 10,
+        "component_count": 1,
+        "branching_node_count": 4
+      },
+      "diagnostics": [
+        {
+          "type": "tip",
+          "label": "error",
+          "heuristic_score": 0.86,
+          "evidence": {
+            "node": "CA",
+            "coverage": 1,
+            "reason": "terminal node has support from at most one read"
+          },
+          "reason": "Low-support terminal graph structure is suspicious for a sequencing error."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "AA",
+            "coverage": 11,
+            "in_degree": 2,
+            "out_degree": 3,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "AC",
+            "coverage": 10,
+            "in_degree": 1,
+            "out_degree": 3,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.65,
+          "evidence": {
+            "node": "AG",
+            "coverage": 4,
+            "in_degree": 1,
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "CC",
+            "coverage": 6,
+            "in_degree": 2,
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.72,
+          "evidence": {
+            "node": "CG",
+            "coverage": 6,
+            "in_degree": 2,
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "repeat_candidate",
+          "label": "repeat_or_branch",
+          "heuristic_score": 0.65,
+          "evidence": {
+            "node": "TA",
+            "coverage": 5,
+            "in_degree": 1,
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          "reason": "High support or branching can indicate repeated sequence or unresolved structure."
+        },
+        {
+          "type": "bubble",
+          "label": "true_variant_or_unresolved",
+          "heuristic_score": 0.8,
+          "evidence": {
+            "start": "AA",
+            "branches": [
+              "AC",
+              "AG"
+            ],
+            "rejoin": "GG",
+            "paths": {
+              "AC": [
+                "AA",
+                "AC",
+                "CG",
+                "GG"
+              ],
+              "AG": [
+                "AA",
+                "AG",
+                "GG"
+              ]
+            },
+            "path_read_support": {
+              "AC": [],
+              "AG": [
+                "bridge_variant",
+                "variant_3"
+              ]
+            },
+            "branch_support": {
+              "AC": 8,
+              "AG": 3
+            },
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "AC": true,
+              "AG": true
+            },
+            "reason": "two or more outgoing paths reconverge nearby",
+            "candidate_id": "bubble-d3f3530634ae6675",
+            "relationships": [
+              {
+                "candidate_id": "bubble-c13fb546c289e1dc",
+                "type": "overlapping",
+                "shared_internal_nodes": [
+                  "CG"
+                ],
+                "shared_edges": [
+                  "AC->CG"
+                ]
+              }
+            ]
+          },
+          "reason": "Reconverging paths may represent a real variant, haplotypes, or insufficient evidence; the score is a structural heuristic, not a probability."
+        },
+        {
+          "type": "bubble",
+          "label": "true_variant_or_unresolved",
+          "heuristic_score": 0.8,
+          "evidence": {
+            "start": "AC",
+            "branches": [
+              "CC",
+              "CG"
+            ],
+            "rejoin": "TT",
+            "paths": {
+              "CC": [
+                "AC",
+                "CC",
+                "CT",
+                "TT"
+              ],
+              "CG": [
+                "AC",
+                "CG",
+                "GT",
+                "TT"
+              ]
+            },
+            "path_read_support": {
+              "CC": [
+                "bridge_variant"
+              ],
+              "CG": [
+                "bridge_reference"
+              ]
+            },
+            "branch_support": {
+              "CC": 3,
+              "CG": 4
+            },
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "CC": true,
+              "CG": true
+            },
+            "reason": "two or more outgoing paths reconverge nearby",
+            "candidate_id": "bubble-c13fb546c289e1dc",
+            "relationships": [
+              {
+                "candidate_id": "bubble-d3f3530634ae6675",
+                "type": "overlapping",
+                "shared_internal_nodes": [
+                  "CG"
+                ],
+                "shared_edges": [
+                  "AC->CG"
+                ]
+              }
+            ]
+          },
+          "reason": "Reconverging paths may represent a real variant, haplotypes, or insufficient evidence; the score is a structural heuristic, not a probability."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "AC",
+            "branches": [
+              "CA",
+              "CC"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "CA": false,
+              "CC": true
+            },
+            "branch_limit_reason": {
+              "CA": null,
+              "CC": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "AC",
+            "branches": [
+              "CA",
+              "CG"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "CA": false,
+              "CG": true
+            },
+            "branch_limit_reason": {
+              "CA": null,
+              "CG": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "CG",
+            "branches": [
+              "GG",
+              "GT"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "GG": false,
+              "GT": true
+            },
+            "branch_limit_reason": {
+              "GG": null,
+              "GT": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        },
+        {
+          "type": "bubble_search_limited",
+          "label": "search_limited",
+          "heuristic_score": 0.0,
+          "evidence": {
+            "start": "GG",
+            "branches": [
+              "GA",
+              "GT"
+            ],
+            "search_depth": 3,
+            "max_nodes": 64,
+            "branch_search_limited": {
+              "GA": false,
+              "GT": true
+            },
+            "branch_limit_reason": {
+              "GA": null,
+              "GT": "depth"
+            },
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established"
+          },
+          "reason": "The bounded graph search was truncated; no complete bubble conclusion is made."
+        }
+      ],
+      "graph": {
+        "strand_mode": "bidirected",
+        "k": 3,
+        "nodes": [
+          {
+            "sequence": "AA",
+            "coverage": 11,
+            "incoming": [
+              "AA",
+              "TA"
+            ],
+            "outgoing": [
+              "AA",
+              "AC",
+              "AG"
+            ],
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "main_6",
+              "variant_1",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 11
+          },
+          {
+            "sequence": "AC",
+            "coverage": 10,
+            "incoming": [
+              "AA"
+            ],
+            "outgoing": [
+              "CA",
+              "CC",
+              "CG"
+            ],
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_3",
+              "main_4",
+              "main_5",
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 10
+          },
+          {
+            "sequence": "AG",
+            "coverage": 4,
+            "incoming": [
+              "AA"
+            ],
+            "outgoing": [
+              "GG"
+            ],
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_2",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 4
+          },
+          {
+            "sequence": "CA",
+            "coverage": 1,
+            "incoming": [
+              "AC"
+            ],
+            "outgoing": [],
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1
+          },
+          {
+            "sequence": "CC",
+            "coverage": 6,
+            "incoming": [
+              "AC",
+              "TC"
+            ],
+            "outgoing": [
+              "CG",
+              "CT"
+            ],
+            "supporting_reads": [
+              "bridge_variant",
+              "repeat_support_1",
+              "repeat_support_2",
+              "variant_1",
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 6
+          },
+          {
+            "sequence": "CG",
+            "coverage": 6,
+            "incoming": [
+              "AC",
+              "CC"
+            ],
+            "outgoing": [
+              "GG",
+              "GT"
+            ],
+            "supporting_reads": [
+              "bridge_reference",
+              "main_2",
+              "main_3",
+              "main_4",
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 6
+          },
+          {
+            "sequence": "CT",
+            "coverage": 4,
+            "incoming": [
+              "CC"
+            ],
+            "outgoing": [
+              "TT"
+            ],
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_2",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 4
+          },
+          {
+            "sequence": "GA",
+            "coverage": 2,
+            "incoming": [
+              "GG"
+            ],
+            "outgoing": [],
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2
+          },
+          {
+            "sequence": "GG",
+            "coverage": 6,
+            "incoming": [
+              "AG",
+              "CG"
+            ],
+            "outgoing": [
+              "GA",
+              "GT"
+            ],
+            "supporting_reads": [
+              "bridge_variant",
+              "repeat_support_1",
+              "repeat_support_2",
+              "variant_1",
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 6
+          },
+          {
+            "sequence": "GT",
+            "coverage": 10,
+            "incoming": [
+              "CG",
+              "GG",
+              "TG"
+            ],
+            "outgoing": [
+              "TT"
+            ],
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_3",
+              "main_4",
+              "main_5",
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 10
+          },
+          {
+            "sequence": "TA",
+            "coverage": 5,
+            "incoming": [
+              "TT"
+            ],
+            "outgoing": [
+              "AA"
+            ],
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "main_5",
+              "main_6",
+              "variant_4"
+            ],
+            "support_count": 5
+          },
+          {
+            "sequence": "TC",
+            "coverage": 2,
+            "incoming": [],
+            "outgoing": [
+              "CC"
+            ],
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2
+          },
+          {
+            "sequence": "TG",
+            "coverage": 1,
+            "incoming": [],
+            "outgoing": [
+              "GT"
+            ],
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1
+          },
+          {
+            "sequence": "TT",
+            "coverage": 11,
+            "incoming": [
+              "CT",
+              "GT",
+              "TT"
+            ],
+            "outgoing": [
+              "TA",
+              "TT"
+            ],
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "main_6",
+              "variant_1",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 11
+          }
+        ],
+        "edges": [
+          {
+            "source": "AA",
+            "target": "AA",
+            "kmer": "AAA",
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "main_1"
+            ],
+            "support_count": 3,
+            "quality_support": 2.96
+          },
+          {
+            "source": "AA",
+            "target": "AC",
+            "kmer": "AAC",
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "variant_1"
+            ],
+            "support_count": 8,
+            "quality_support": 7.31
+          },
+          {
+            "source": "AA",
+            "target": "AG",
+            "kmer": "AAG",
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 3,
+            "quality_support": 2.98
+          },
+          {
+            "source": "AC",
+            "target": "CA",
+            "kmer": "ACA",
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1,
+            "quality_support": 0.35
+          },
+          {
+            "source": "AC",
+            "target": "CC",
+            "kmer": "ACC",
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 3,
+            "quality_support": 2.98
+          },
+          {
+            "source": "AC",
+            "target": "CG",
+            "kmer": "ACG",
+            "supporting_reads": [
+              "bridge_reference",
+              "main_2",
+              "main_3",
+              "main_4"
+            ],
+            "support_count": 4,
+            "quality_support": 3.98
+          },
+          {
+            "source": "AG",
+            "target": "GG",
+            "kmer": "AGG",
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 3,
+            "quality_support": 2.98
+          },
+          {
+            "source": "CC",
+            "target": "CG",
+            "kmer": "CCG",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "CC",
+            "target": "CT",
+            "kmer": "CCT",
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_2",
+              "variant_3"
+            ],
+            "support_count": 3,
+            "quality_support": 2.98
+          },
+          {
+            "source": "CG",
+            "target": "GG",
+            "kmer": "CGG",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "CG",
+            "target": "GT",
+            "kmer": "CGT",
+            "supporting_reads": [
+              "bridge_reference",
+              "main_2",
+              "main_3",
+              "main_4"
+            ],
+            "support_count": 4,
+            "quality_support": 3.98
+          },
+          {
+            "source": "CT",
+            "target": "TT",
+            "kmer": "CTT",
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_3",
+              "variant_4"
+            ],
+            "support_count": 3,
+            "quality_support": 2.98
+          },
+          {
+            "source": "GG",
+            "target": "GA",
+            "kmer": "GGA",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "GG",
+            "target": "GT",
+            "kmer": "GGT",
+            "supporting_reads": [
+              "bridge_variant",
+              "variant_1",
+              "variant_2"
+            ],
+            "support_count": 3,
+            "quality_support": 2.98
+          },
+          {
+            "source": "GT",
+            "target": "TT",
+            "kmer": "GTT",
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "error_tip",
+              "main_1",
+              "main_2",
+              "main_4",
+              "main_5",
+              "variant_1"
+            ],
+            "support_count": 8,
+            "quality_support": 7.31
+          },
+          {
+            "source": "TA",
+            "target": "AA",
+            "kmer": "TAA",
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "main_5",
+              "main_6",
+              "variant_4"
+            ],
+            "support_count": 5,
+            "quality_support": 4.96
+          },
+          {
+            "source": "TC",
+            "target": "CC",
+            "kmer": "TCC",
+            "supporting_reads": [
+              "repeat_support_1",
+              "repeat_support_2"
+            ],
+            "support_count": 2,
+            "quality_support": 2.0
+          },
+          {
+            "source": "TG",
+            "target": "GT",
+            "kmer": "TGT",
+            "supporting_reads": [
+              "error_tip"
+            ],
+            "support_count": 1,
+            "quality_support": 0.35
+          },
+          {
+            "source": "TT",
+            "target": "TA",
+            "kmer": "TTA",
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "main_5",
+              "main_6",
+              "variant_4"
+            ],
+            "support_count": 5,
+            "quality_support": 4.96
+          },
+          {
+            "source": "TT",
+            "target": "TT",
+            "kmer": "TTT",
+            "supporting_reads": [
+              "bridge_reference",
+              "bridge_variant",
+              "main_1"
+            ],
+            "support_count": 3,
+            "quality_support": 2.96
+          }
+        ]
+      }
+    }
+  ]
+}

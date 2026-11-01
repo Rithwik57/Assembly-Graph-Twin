@@ -1,0 +1,101 @@
+{
+  "baseline_version": "2.0-forward-only-legacy",
+  "protocol_file": "superseded protocol 2.0 (hash retained for audit)",
+  "protocol_sha256": "ea5ea6a7140deb6ce863893bf8929b4dac2d6c630a9d892a70683868e2a44b41",
+  "strand_mode": "forward-only directed graph",
+  "anchor": {
+    "dataset_id": "ecoli-smoke",
+    "reference_accession": "NC_000913.3",
+    "reference_sha256": "6b195feda4c66140f6762742eb8b30c2652f02b45878b174f5b00ef85ecc95d7",
+    "note": "Local smoke samples from the public E. coli ONT FASTA; not a sufficient coverage or assembly benchmark."
+  },
+  "frozen_baseline": {
+    "resolver": "highest complete-path read support, then branch-edge support; abstain on ties",
+    "labeling": "bounded seed-and-extend reference alignment at minimum identity 0.90, both orientations",
+    "candidate_count": 0,
+    "scorable_candidates": 0,
+    "interpretation": "No accuracy, coverage, or abstention estimate can be made because these runs produced no complete bubble candidates."
+  },
+  "runs": [
+    {
+      "report": "ecoli_benchmark_v2_50.json",
+      "seed": 1,
+      "max_reads": 50,
+      "k": 31,
+      "bubble_depth": 3,
+      "read_fingerprint_sha256": "b7deacb8e4af8a866d3e79353dbee9984f82638095b5c458e9cf800a4bb15b6e",
+      "graph": {
+        "nodes": 505344,
+        "edges": 505335,
+        "branching_nodes": 67,
+        "components": 22
+      },
+      "diagnostics": {
+        "tips": 100,
+        "repeat_or_branch_nodes": 100,
+        "high_support_repeat_nodes": 54,
+        "bubble_candidates": 0,
+        "search_limited_pairs": 44,
+        "search_limit_branches_by_reason": {
+          "depth": 88,
+          "node_cap": 0
+        }
+      },
+      "runtime_seconds": 51.013143,
+      "python_tracemalloc_peak_bytes": 237525489
+    },
+    {
+      "report": "ecoli_benchmark_v2_100.json",
+      "seed": 1,
+      "max_reads": 100,
+      "k": 31,
+      "bubble_depth": 3,
+      "read_fingerprint_sha256": "b18ae1f646ed2285178a1951443a014ed4e86920f98d3cf474cdd74aa9c65a6e",
+      "graph": {
+        "nodes": 1035792,
+        "edges": 1035797,
+        "branching_nodes": 168,
+        "components": 40
+      },
+      "diagnostics": {
+        "tips": 193,
+        "repeat_or_branch_nodes": 220,
+        "high_support_repeat_nodes": 110,
+        "bubble_candidates": 0,
+        "search_limited_pairs": 115,
+        "search_limit_branches_by_reason": {
+          "depth": 229,
+          "node_cap": 0
+        }
+      },
+      "runtime_seconds": 83.81854,
+      "python_tracemalloc_peak_bytes": 453505700
+    }
+  ],
+  "exploratory_checks": [
+    {
+      "settings": "50 reads, k=31, depth=6, node cap=256",
+      "candidate_count": 0,
+      "limited_search_pairs": 44,
+      "limit_reason": "depth"
+    },
+    {
+      "settings": "50 reads, k=31, depth=12, node cap=256",
+      "candidate_count": 0,
+      "limited_search_pairs": 44,
+      "limit_reason": "depth"
+    },
+    {
+      "settings": "50 reads, k=21, depth=3, node cap=64",
+      "candidate_count": 0,
+      "limited_search_pairs": 141,
+      "limit_reason": "depth"
+    }
+  ],
+  "pending_gates": {
+    "candidate_rich_real_read_subset": "not reached; these low-coverage samples did not produce complete candidates",
+    "held_out_species": "not run; no held-out species read/reference pair is available in the workspace",
+    "assembler_comparison": "not run; no assembler executable is installed in the environment",
+    "reference_assembly_evaluation": "not run; no assembly contigs or QUAST executable are available"
+  }
+}

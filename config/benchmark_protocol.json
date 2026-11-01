@@ -1,0 +1,70 @@
+{
+  "protocol_version": "3.3",
+  "purpose": "Reference-supported path-selection baseline for the Assembly Graph Twin de Bruijn graph",
+  "anchor_dataset": {
+    "dataset_id": "ecoli-k12-r9",
+    "organism": "Escherichia coli K-12 MG1655",
+    "read_source": "Loman Lab R9 ONT release",
+    "reference_accession": "NC_000913.3",
+    "data_bundled": false
+  },
+  "frozen_run_defaults": {
+    "k": 31,
+    "seed": 1,
+    "read_subset_sizes": [50, 100, 250, 500],
+    "sampling": "sha256_bottom_k_by_read_id_v1",
+    "bubble_depth": 3,
+    "bubble_search_node_cap": 64,
+    "maximum_bubble_search_node_cap": 256,
+    "strand_mode": "bidirected",
+    "strand_representation": "store each observed directed transition and its reverse-complement twin; deduplicate mirrored bubble candidates",
+    "minimum_reference_identity": 0.9,
+    "support_baseline": "highest_complete_path_support_then_branch_edge_support; abstain_on_tie"
+  },
+  "labeling": {
+    "method": "bounded seed-and-extend edit-distance path alignment against reference and reverse complement",
+    "truth_scope": "reference-supported path compatibility, not variant truth",
+    "ambiguous_candidates": "retain as unlabeled when multiple branches align",
+    "unlabeled_candidates": "retain when no branch aligns or alignment search is truncated"
+  },
+  "reference_validation": {
+    "read_placement": "sampled exact-seed anchors on both strands with unique-locus filtering; estimated whole-read spans, not gapped alignment",
+    "seed_length": "min(15, shortest_reference_length); independent of graph k",
+    "reference_index_stride": "1 when seed length is below 8; otherwise 12",
+    "query_seed_stride": "2 when seed length is below 8; otherwise 8",
+    "minimum_anchors": "one for reads shorter than two seeds, otherwise two separated anchors",
+    "reference_breadth": "union of estimated placed-read spans, reported as an estimate",
+    "edge_support": "fraction of oriented graph edges traversed by at least one uniquely anchor-placed read"
+  },
+  "graph_model": {
+    "type": "bidirected de Bruijn graph represented as a directed double-cover",
+    "read_support": "a physical read supports each orientation-specific transition once; reverse-complement twin transitions are added as the same molecule's opposite-strand view",
+    "reported_counts": "oriented node and edge counts are paired with reverse-complement-collapsed counts; component, tip, branch, and complete-candidate summaries collapse mirror views where identifiable; search-limit events are orientation-specific",
+    "canonical_kmers": false,
+    "limitations": [
+      "This is not a compact canonical-k-mer or node-side-port implementation.",
+      "Oriented graph size may exceed the forward-only representation.",
+      "Read support is per oriented node/edge and must not be summed across reverse-complement twins as independent molecules."
+    ]
+  },
+  "reported_metrics": [
+    "candidate_count",
+    "uniquely_labeled_candidate_count",
+    "coverage_on_labeled",
+    "accuracy_on_resolved_labeled",
+    "abstention_rate_on_labeled",
+    "false_resolutions",
+    "reference_placed_read_count",
+    "reference_placed_read_bases",
+    "estimated_reference_breadth",
+    "graph_edge_support_fraction",
+    "runtime_seconds",
+    "python_tracemalloc_peak_bytes"
+  ],
+  "next_validation_gates": {
+    "held_out_species": "pending; no generalization claim before disjoint species evaluation",
+    "assembler_baseline": "pending; compare a pinned assembler and version",
+    "assembly_evaluation": "pending; use a pinned reference-based evaluator such as QUAST",
+    "neural_model": "deferred until labeled candidates and frozen baseline are sufficient"
+  }
+}

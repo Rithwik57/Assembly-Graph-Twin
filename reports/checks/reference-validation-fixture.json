@@ -1,0 +1,281 @@
+{
+  "benchmark_report": {
+    "benchmark": "reference_supported_path_compatibility",
+    "candidates": [
+      {
+        "branch_features": {
+          "AC": [
+            1.3862943611198906,
+            1.0986122886681098,
+            1.0986122886681098,
+            1.0986122886681098,
+            2.0,
+            2.0
+          ],
+          "AT": [
+            1.3862943611198906,
+            0.6931471805599453,
+            0.6931471805599453,
+            0.6931471805599453,
+            1.0,
+            1.0
+          ]
+        },
+        "branch_reference_alignments": {
+          "AC": {
+            "hits": [
+              {
+                "edit_distance": 0,
+                "end": 6,
+                "identity": 1.0,
+                "reference": "positive-control-reference",
+                "start": 1,
+                "strand": "+"
+              }
+            ],
+            "search_truncated": false
+          },
+          "AT": {
+            "hits": [],
+            "search_truncated": false
+          }
+        },
+        "branch_reference_hits": {
+          "AC": [
+            "positive-control-reference"
+          ],
+          "AT": []
+        },
+        "branch_support": {
+          "AC": 2,
+          "AT": 1
+        },
+        "candidate_id": "bubble-625c5b82751db58c",
+        "heuristic_correct": true,
+        "heuristic_decision": "highest_complete_path_then_edge_support",
+        "heuristic_selected_branch": "AC",
+        "model_selection": null,
+        "path_read_support": {
+          "AC": 2,
+          "AT": 1
+        },
+        "paths": {
+          "AC": [
+            "AA",
+            "AC",
+            "CC",
+            "CT"
+          ],
+          "AT": [
+            "AA",
+            "AT",
+            "TC",
+            "CT"
+          ]
+        },
+        "reference_alignment_search_truncated": false,
+        "reference_compatible_branches": [
+          "AC"
+        ],
+        "reference_label_status": "unique_reference_path",
+        "rejoin": "CT",
+        "start": "AA"
+      }
+    ],
+    "inputs": {
+      "dataset_id": "reference",
+      "diagnostic_summary": {
+        "branching_repeat_count": 3,
+        "bubble_candidate_count": 1,
+        "bubble_search_limit_reasons": {
+          "depth": 0,
+          "node_cap": 0
+        },
+        "bubble_search_limited_count": 0,
+        "disconnected_component_count": 1,
+        "examples": {
+          "bubble_search_limited": [],
+          "largest_components": [
+            {
+              "component": 1,
+              "edge_count": 16,
+              "min_node": "AA",
+              "min_reverse_complement_node": "AA",
+              "node_count": 13
+            }
+          ],
+          "repeat_or_branch_nodes": [
+            {
+              "coverage": 3,
+              "in_degree": 1,
+              "node": "AA",
+              "out_degree": 3,
+              "reason": "high support or multiple graph connections"
+            },
+            {
+              "coverage": 3,
+              "in_degree": 1,
+              "node": "AG",
+              "out_degree": 2,
+              "reason": "high support or multiple graph connections"
+            },
+            {
+              "coverage": 1,
+              "in_degree": 2,
+              "node": "AT",
+              "out_degree": 2,
+              "reason": "high support or multiple graph connections"
+            },
+            {
+              "coverage": 3,
+              "in_degree": 0,
+              "node": "CA",
+              "out_degree": 1,
+              "reason": "high support or multiple graph connections"
+            }
+          ],
+          "tips": []
+        },
+        "high_support_repeat_count": 3,
+        "interpretation": "Structural diagnostics are evidence about this sampled graph, not confirmed variants, repeats, errors, or coverage gaps.",
+        "repeat_or_branch_count": 4,
+        "tip_count": 0
+      },
+      "graph_metrics": {
+        "branching_node_count": 3,
+        "component_count": 1,
+        "edge_count": 16,
+        "k": 3,
+        "node_count": 13,
+        "strand_collapsed_edge_count": 8,
+        "strand_collapsed_node_count": 7,
+        "strand_mode": "bidirected"
+      },
+      "model_checkpoint_sha256": null,
+      "read_count": 3,
+      "read_files": [
+        "C:\\Users\\RITHWIK\\Desktop\\Mini Proj\\assembly_graph_twin\\fixtures\\known_bubble\\reads.fasta"
+      ],
+      "read_fingerprint_sha256": "08655cd4ccdc6423dad35a0d7b6eef1590bb89a499b101a018d6a88a6b68b822",
+      "reference_file": "C:\\Users\\RITHWIK\\Desktop\\Mini Proj\\assembly_graph_twin\\fixtures\\known_bubble\\reference.fasta",
+      "reference_sha256": "b0cdee016f4eb11803441e30e2bc15944ede297e02d9c39aeb80098e0c9e0b84",
+      "selected_read_count": 3,
+      "total_input_read_count": 3
+    },
+    "metrics": {
+      "abstention_rate_on_labeled": 0.0,
+      "accuracy_on_resolved_labeled": 1.0,
+      "candidate_count": 1,
+      "coverage_on_labeled": 1.0,
+      "false_resolutions": 0,
+      "model": null,
+      "python_tracemalloc_peak_bytes": 268010,
+      "resolved_labeled_candidate_count": 1,
+      "runtime_seconds": 0.009103,
+      "uniquely_labeled_candidate_count": 1
+    },
+    "protocol": {
+      "bubble_depth": 3,
+      "bubble_search_node_cap": 64,
+      "k": 3,
+      "label_semantics": "reference_compatibility_proxy",
+      "limitations": [
+        "Reference compatibility is a proxy label, not biological variant truth; approximate alignment can accept near matches.",
+        "A path absent from the reference is not necessarily an error or incorrect path.",
+        "Multiple reference-compatible paths are left ambiguous; one reference does not establish variant truth.",
+        "This report evaluates graph bubble selection only and does not emit or benchmark contig assemblies.",
+        "The bidirected double-cover stores each observed transition and its reverse-complement twin; it is not a compact canonical-k-mer graph.",
+        "Coverage is per physical read per oriented node/edge, not a count of distinct canonical k-molecules.",
+        "Read placement, placed-base totals, and reference breadth are anchor-derived estimates, not gapped alignments or base-level consensus."
+      ],
+      "max_reads": null,
+      "minimum_reference_identity": 0.9,
+      "protocol_sha256": "f54448caa9e2cdfb91e3b74fc2c0d3e502af55581fc91e0cd6a81c297bbb7607",
+      "protocol_version": "3.1",
+      "read_reference_mapping_method": "sampled exact 3-mer anchor placement on both read strands; estimated whole-read spans",
+      "read_selection": "all input reads sorted by deterministic read-ID hash",
+      "reference_label_method": "seed-and-extend edit-distance alignment against the reference and its reverse complement",
+      "reference_matching": "bounded seed-and-extend path alignment; branch labels require the configured minimum identity",
+      "sampling_algorithm": "sha256_bottom_k_by_read_id_v1",
+      "seed": 7,
+      "strand_mode": "bidirected",
+      "strand_representation": "bidirected double-cover with reverse-complement twin transitions"
+    },
+    "reference_validation": {
+      "ambiguous_anchor_placement_read_count": 0,
+      "anchor_seed_length": 3,
+      "estimated_coverage_by_reference": {
+        "positive-control-reference": {
+          "breadth": 1.0,
+          "covered_bases": 7,
+          "reference_bases": 7
+        }
+      },
+      "estimated_reference_breadth": 1.0,
+      "estimated_reference_covered_bases": 7,
+      "graph_edge_count": 16,
+      "graph_edge_support_fraction": 1.0,
+      "graph_edges_supported_by_reference_placed_reads": 16,
+      "interpretation": "Read placement and breadth are estimates from exact-seed anchor clusters; they are not gapped alignments. An edge is counted when a uniquely anchor-placed read traverses it.",
+      "is_production_alignment": false,
+      "method": "sampled exact 3-mer anchor placement on both read strands; estimated whole-read spans",
+      "minimum_anchor_count": "1 for reads shorter than two seeds; otherwise 2 separated anchors",
+      "reference_anchor_count_on_placed_reads": 8,
+      "reference_index_stride": 1,
+      "reference_placed_read_bases": 21,
+      "reference_placed_read_count": 3,
+      "reference_placed_read_fraction": 1.0,
+      "selected_read_count": 3,
+      "total_reference_bases": 7,
+      "unplaced_read_count": 0
+    },
+    "schema_version": "1.0",
+    "training_examples": [
+      {
+        "branch": "AC",
+        "candidate_id": "bubble-625c5b82751db58c",
+        "features": [
+          1.3862943611198906,
+          1.0986122886681098,
+          1.0986122886681098,
+          1.0986122886681098,
+          2.0,
+          2.0
+        ],
+        "label": 1
+      },
+      {
+        "branch": "AT",
+        "candidate_id": "bubble-625c5b82751db58c",
+        "features": [
+          1.3862943611198906,
+          0.6931471805599453,
+          0.6931471805599453,
+          0.6931471805599453,
+          1.0,
+          1.0
+        ],
+        "label": 0
+      }
+    ]
+  },
+  "check": "known_bubble_positive_control",
+  "expected": {
+    "bubble_candidate_count_at_least": 1,
+    "deterministic_evidence": true,
+    "label_semantics": "reference_compatibility_proxy",
+    "uniquely_labeled_candidate_count_at_least": 1
+  },
+  "failures": [],
+  "observed": {
+    "accuracy_on_resolved_labeled": 1.0,
+    "candidate_count": 1,
+    "evidence_fingerprint_sha256": "4ad9ead829d8ca6fb077b119f2811bdb5b5459d56fb7bcf251f0485e2688d0ff",
+    "false_resolutions": 0,
+    "k": 3,
+    "read_fingerprint_sha256": "08655cd4ccdc6423dad35a0d7b6eef1590bb89a499b101a018d6a88a6b68b822",
+    "seed": 7,
+    "uniquely_labeled_candidate_count": 1
+  },
+  "status": "passed"
+}

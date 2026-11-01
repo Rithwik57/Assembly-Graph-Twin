@@ -1,0 +1,2 @@
+# Optional dependency for training and applying the neural path scorer.
+torch>=2.2

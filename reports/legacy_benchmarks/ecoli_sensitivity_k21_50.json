@@ -1,0 +1,386 @@
+{
+  "benchmark": "reference_supported_path_compatibility",
+  "candidates": [],
+  "inputs": {
+    "dataset_id": "ecoli-sensitivity-k21-50",
+    "diagnostic_summary": {
+      "branching_repeat_count": 215,
+      "bubble_candidate_count": 0,
+      "bubble_search_limit_reasons": {
+        "depth": 282,
+        "node_cap": 0
+      },
+      "bubble_search_limited_count": 141,
+      "disconnected_component_count": 5,
+      "examples": {
+        "bubble_search_limited": [
+          {
+            "branch_limit_reason": {
+              "AACGCTTTCGCGTTTTCGTA": "depth",
+              "AACGCTTTCGCGTTTTCGTG": "depth"
+            },
+            "branch_search_limited": {
+              "AACGCTTTCGCGTTTTCGTA": true,
+              "AACGCTTTCGCGTTTTCGTG": true
+            },
+            "branches": [
+              "AACGCTTTCGCGTTTTCGTA",
+              "AACGCTTTCGCGTTTTCGTG"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "AAACGCTTTCGCGTTTTCGT"
+          },
+          {
+            "branch_limit_reason": {
+              "ATCCTTCCCCACCACCATCA": "depth",
+              "ATCCTTCCCCACCACCATCT": "depth"
+            },
+            "branch_search_limited": {
+              "ATCCTTCCCCACCACCATCA": true,
+              "ATCCTTCCCCACCACCATCT": true
+            },
+            "branches": [
+              "ATCCTTCCCCACCACCATCA",
+              "ATCCTTCCCCACCACCATCT"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "AATCCTTCCCCACCACCATC"
+          },
+          {
+            "branch_limit_reason": {
+              "ATGATGAAATGATGAAATGA": "depth",
+              "ATGATGAAATGATGAAATGT": "depth"
+            },
+            "branch_search_limited": {
+              "ATGATGAAATGATGAAATGA": true,
+              "ATGATGAAATGATGAAATGT": true
+            },
+            "branches": [
+              "ATGATGAAATGATGAAATGA",
+              "ATGATGAAATGATGAAATGT"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "AATGATGAAATGATGAAATG"
+          },
+          {
+            "branch_limit_reason": {
+              "ATGTGGGCCTTCATGCCAAA": "depth",
+              "ATGTGGGCCTTCATGCCAAG": "depth"
+            },
+            "branch_search_limited": {
+              "ATGTGGGCCTTCATGCCAAA": true,
+              "ATGTGGGCCTTCATGCCAAG": true
+            },
+            "branches": [
+              "ATGTGGGCCTTCATGCCAAA",
+              "ATGTGGGCCTTCATGCCAAG"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "AATGTGGGCCTTCATGCCAA"
+          },
+          {
+            "branch_limit_reason": {
+              "ATTCGTGAGCTGGCGCTGCA": "depth",
+              "ATTCGTGAGCTGGCGCTGCG": "depth"
+            },
+            "branch_search_limited": {
+              "ATTCGTGAGCTGGCGCTGCA": true,
+              "ATTCGTGAGCTGGCGCTGCG": true
+            },
+            "branches": [
+              "ATTCGTGAGCTGGCGCTGCA",
+              "ATTCGTGAGCTGGCGCTGCG"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "AATTCGTGAGCTGGCGCTGC"
+          },
+          {
+            "branch_limit_reason": {
+              "CCAATTCCGCCACCTTCGCA": "depth",
+              "CCAATTCCGCCACCTTCGCC": "depth"
+            },
+            "branch_search_limited": {
+              "CCAATTCCGCCACCTTCGCA": true,
+              "CCAATTCCGCCACCTTCGCC": true
+            },
+            "branches": [
+              "CCAATTCCGCCACCTTCGCA",
+              "CCAATTCCGCCACCTTCGCC"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "ACCAATTCCGCCACCTTCGC"
+          },
+          {
+            "branch_limit_reason": {
+              "CGCTTTCGCGTTTTCGTGCA": "depth",
+              "CGCTTTCGCGTTTTCGTGCC": "depth"
+            },
+            "branch_search_limited": {
+              "CGCTTTCGCGTTTTCGTGCA": true,
+              "CGCTTTCGCGTTTTCGTGCC": true
+            },
+            "branches": [
+              "CGCTTTCGCGTTTTCGTGCA",
+              "CGCTTTCGCGTTTTCGTGCC"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "ACGCTTTCGCGTTTTCGTGC"
+          },
+          {
+            "branch_limit_reason": {
+              "CGCTTTCGCGTTTTCGTGCA": "depth",
+              "CGCTTTCGCGTTTTCGTGCG": "depth"
+            },
+            "branch_search_limited": {
+              "CGCTTTCGCGTTTTCGTGCA": true,
+              "CGCTTTCGCGTTTTCGTGCG": true
+            },
+            "branches": [
+              "CGCTTTCGCGTTTTCGTGCA",
+              "CGCTTTCGCGTTTTCGTGCG"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "ACGCTTTCGCGTTTTCGTGC"
+          },
+          {
+            "branch_limit_reason": {
+              "CGCTTTCGCGTTTTCGTGCC": "depth",
+              "CGCTTTCGCGTTTTCGTGCG": "depth"
+            },
+            "branch_search_limited": {
+              "CGCTTTCGCGTTTTCGTGCC": true,
+              "CGCTTTCGCGTTTTCGTGCG": true
+            },
+            "branches": [
+              "CGCTTTCGCGTTTTCGTGCC",
+              "CGCTTTCGCGTTTTCGTGCG"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "ACGCTTTCGCGTTTTCGTGC"
+          },
+          {
+            "branch_limit_reason": {
+              "CGTATTGCTGTTCGCATTTG": "depth",
+              "CGTATTGCTGTTCGCATTTT": "depth"
+            },
+            "branch_search_limited": {
+              "CGTATTGCTGTTCGCATTTG": true,
+              "CGTATTGCTGTTCGCATTTT": true
+            },
+            "branches": [
+              "CGTATTGCTGTTCGCATTTG",
+              "CGTATTGCTGTTCGCATTTT"
+            ],
+            "max_nodes": 64,
+            "reason": "bounded search stopped before a complete reconvergence was found; absence of a bubble is not established",
+            "search_depth": 3,
+            "start": "ACGTATTGCTGTTCGCATTT"
+          }
+        ],
+        "largest_components": [
+          {
+            "component": 1,
+            "edge_count": 465477,
+            "min_node": "AAAAACAAAAGCGCGGCGAT",
+            "node_count": 465393
+          },
+          {
+            "component": 4,
+            "edge_count": 17654,
+            "min_node": "AAAAACCCGCAACTTGCTGA",
+            "node_count": 17655
+          },
+          {
+            "component": 3,
+            "edge_count": 8002,
+            "min_node": "AAAAACAGCGAGCATTACCT",
+            "node_count": 8003
+          },
+          {
+            "component": 2,
+            "edge_count": 7492,
+            "min_node": "AAAAAGTGGGTCTCGAACAG",
+            "node_count": 7493
+          },
+          {
+            "component": 5,
+            "edge_count": 6462,
+            "min_node": "AAAAACAATGTTTCCATCGT",
+            "node_count": 6463
+          }
+        ],
+        "repeat_or_branch_nodes": [
+          {
+            "coverage": 17,
+            "in_degree": 2,
+            "node": "AAACGCTTTCGCGTTTTCGT",
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 1,
+            "in_degree": 2,
+            "node": "AAAGCAGTACGGTGACGCGG",
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 2,
+            "in_degree": 2,
+            "node": "AACATGATCTCATATCAGGG",
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 17,
+            "in_degree": 2,
+            "node": "AACGCTTTCGCGTTTTCGTG",
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 2,
+            "in_degree": 2,
+            "node": "AAGTGCCACTGATTGCCTTT",
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 1,
+            "in_degree": 1,
+            "node": "AATCCTTCCCCACCACCATC",
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 1,
+            "in_degree": 1,
+            "node": "AATGATGAAATGATGAAATG",
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 2,
+            "in_degree": 1,
+            "node": "AATGTGGGCCTTCATGCCAA",
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 2,
+            "in_degree": 1,
+            "node": "AATTCGTGAGCTGGCGCTGC",
+            "out_degree": 2,
+            "reason": "high support or multiple graph connections"
+          },
+          {
+            "coverage": 1,
+            "in_degree": 2,
+            "node": "ACACCTGAAGCTAGCGCGTC",
+            "out_degree": 1,
+            "reason": "high support or multiple graph connections"
+          }
+        ],
+        "tips": [
+          {
+            "coverage": 1,
+            "node": "AAACAACATAAGCACAATGT",
+            "reason": "terminal node has support from at most one read"
+          },
+          {
+            "coverage": 1,
+            "node": "AAATCGGTATGCTTCCGTTC",
+            "reason": "terminal node has support from at most one read"
+          },
+          {
+            "coverage": 1,
+            "node": "AACCACCTGCCGTAAACACG",
+            "reason": "terminal node has support from at most one read"
+          },
+          {
+            "coverage": 1,
+            "node": "AACTCGCCGTTCCTTCCTGA",
+            "reason": "terminal node has support from at most one read"
+          },
+          {
+            "coverage": 1,
+            "node": "ACAAACGCAATAAAGCGACC",
+            "reason": "terminal node has support from at most one read"
+          }
+        ]
+      },
+      "high_support_repeat_count": 102,
+      "interpretation": "No bounded bubble candidate was found. Structural diagnostics are evidence about this sampled graph, not confirmed variants, repeats, errors, or coverage gaps.",
+      "repeat_or_branch_count": 250,
+      "tip_count": 100
+    },
+    "graph_metrics": {
+      "branching_node_count": 215,
+      "component_count": 5,
+      "edge_count": 505087,
+      "k": 21,
+      "node_count": 505007
+    },
+    "model_checkpoint_sha256": null,
+    "read_count": 50,
+    "read_files": [
+      "assembly_graph_twin\\ecoli_reads.fasta"
+    ],
+    "read_fingerprint_sha256": "b7deacb8e4af8a866d3e79353dbee9984f82638095b5c458e9cf800a4bb15b6e",
+    "reference_file": "ecoli_reference.fa",
+    "reference_sha256": "6b195feda4c66140f6762742eb8b30c2652f02b45878b174f5b00ef85ecc95d7",
+    "selected_read_count": 50,
+    "total_input_read_count": 164472
+  },
+  "metrics": {
+    "abstention_rate_on_labeled": null,
+    "accuracy_on_resolved_labeled": null,
+    "candidate_count": 0,
+    "coverage_on_labeled": null,
+    "false_resolutions": 0,
+    "model": null,
+    "python_tracemalloc_peak_bytes": 248584444,
+    "resolved_labeled_candidate_count": 0,
+    "runtime_seconds": 47.238056,
+    "uniquely_labeled_candidate_count": 0
+  },
+  "protocol": {
+    "bubble_depth": 3,
+    "bubble_search_node_cap": 64,
+    "k": 21,
+    "limitations": [
+      "Exact matching cannot label sequencing-error paths that differ from the reference.",
+      "Multiple reference-compatible paths are left ambiguous; one reference does not establish variant truth.",
+      "This report evaluates graph bubble selection only and does not emit or benchmark contig assemblies.",
+      "Reads are not strand-normalized; graph orientation follows the input records."
+    ],
+    "max_reads": 50,
+    "minimum_reference_identity": 0.9,
+    "protocol_version": "2.0",
+    "read_selection": "sha256 bottom-k selection by seed and read ID; subsets are nested across max_reads values",
+    "reference_label_method": "seed-and-extend edit-distance alignment against the reference and its reverse complement",
+    "reference_matching": "bounded seed-and-extend path alignment; branch labels require the configured minimum identity",
+    "sampling_algorithm": "sha256_bottom_k_by_read_id_v1",
+    "seed": 1
+  },
+  "schema_version": "1.0",
+  "training_examples": []
+}

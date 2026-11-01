@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+
+# Local biological datasets are large and must remain external to source history.
+data/reads/*
+!data/reads/README.md
+data/references/*
+!data/references/README.md
+
+# Scratch directories left by interrupted local runs.
+tmp*/
+_test_tmp/
+scratch/

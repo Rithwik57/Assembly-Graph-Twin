@@ -1,0 +1,237 @@
+{
+  "benchmark_report": {
+    "benchmark": "reference_supported_path_compatibility",
+    "candidates": [
+      {
+        "branch_features": {
+          "AC": [
+            1.3862943611198906,
+            1.0986122886681098,
+            1.0986122886681098,
+            1.0986122886681098,
+            2.0,
+            2.0
+          ],
+          "AT": [
+            1.3862943611198906,
+            0.6931471805599453,
+            0.6931471805599453,
+            0.6931471805599453,
+            1.0,
+            1.0
+          ]
+        },
+        "branch_reference_alignments": {
+          "AC": {
+            "hits": [
+              {
+                "edit_distance": 0,
+                "end": 6,
+                "identity": 1.0,
+                "reference": "positive-control-reference",
+                "start": 1,
+                "strand": "+"
+              }
+            ],
+            "search_truncated": false
+          },
+          "AT": {
+            "hits": [],
+            "search_truncated": false
+          }
+        },
+        "branch_reference_hits": {
+          "AC": [
+            "positive-control-reference"
+          ],
+          "AT": []
+        },
+        "branch_support": {
+          "AC": 2,
+          "AT": 1
+        },
+        "candidate_id": "bubble-b6651811e5a50b41",
+        "heuristic_correct": true,
+        "heuristic_decision": "highest_complete_path_then_edge_support",
+        "heuristic_selected_branch": "AC",
+        "model_selection": null,
+        "path_read_support": {
+          "AC": 2,
+          "AT": 1
+        },
+        "paths": {
+          "AC": [
+            "AA",
+            "AC",
+            "CC",
+            "CT"
+          ],
+          "AT": [
+            "AA",
+            "AT",
+            "TC",
+            "CT"
+          ]
+        },
+        "reference_alignment_search_truncated": false,
+        "reference_compatible_branches": [
+          "AC"
+        ],
+        "reference_label_status": "unique_reference_path",
+        "rejoin": "CT",
+        "start": "AA"
+      }
+    ],
+    "inputs": {
+      "dataset_id": "reference",
+      "diagnostic_summary": {
+        "branching_repeat_count": 2,
+        "bubble_candidate_count": 1,
+        "bubble_search_limit_reasons": {
+          "depth": 0,
+          "node_cap": 0
+        },
+        "bubble_search_limited_count": 0,
+        "disconnected_component_count": 1,
+        "examples": {
+          "bubble_search_limited": [],
+          "largest_components": [
+            {
+              "component": 1,
+              "edge_count": 8,
+              "min_node": "AA",
+              "node_count": 7
+            }
+          ],
+          "repeat_or_branch_nodes": [
+            {
+              "coverage": 3,
+              "in_degree": 1,
+              "node": "AA",
+              "out_degree": 3,
+              "reason": "high support or multiple graph connections"
+            },
+            {
+              "coverage": 3,
+              "in_degree": 2,
+              "node": "CT",
+              "out_degree": 1,
+              "reason": "high support or multiple graph connections"
+            },
+            {
+              "coverage": 3,
+              "in_degree": 1,
+              "node": "TG",
+              "out_degree": 0,
+              "reason": "high support or multiple graph connections"
+            }
+          ],
+          "tips": []
+        },
+        "high_support_repeat_count": 3,
+        "interpretation": "Structural diagnostics are evidence about this sampled graph, not confirmed variants, repeats, errors, or coverage gaps.",
+        "repeat_or_branch_count": 3,
+        "tip_count": 0
+      },
+      "graph_metrics": {
+        "branching_node_count": 2,
+        "component_count": 1,
+        "edge_count": 8,
+        "k": 3,
+        "node_count": 7
+      },
+      "model_checkpoint_sha256": null,
+      "read_count": 3,
+      "read_files": [
+        "C:\\Users\\RITHWIK\\Desktop\\Mini Proj\\assembly_graph_twin\\fixtures\\known_bubble\\reads.fasta"
+      ],
+      "read_fingerprint_sha256": "08655cd4ccdc6423dad35a0d7b6eef1590bb89a499b101a018d6a88a6b68b822",
+      "reference_file": "C:\\Users\\RITHWIK\\Desktop\\Mini Proj\\assembly_graph_twin\\fixtures\\known_bubble\\reference.fasta",
+      "reference_sha256": "b0cdee016f4eb11803441e30e2bc15944ede297e02d9c39aeb80098e0c9e0b84",
+      "selected_read_count": 3,
+      "total_input_read_count": 3
+    },
+    "metrics": {
+      "abstention_rate_on_labeled": 0.0,
+      "accuracy_on_resolved_labeled": 1.0,
+      "candidate_count": 1,
+      "coverage_on_labeled": 1.0,
+      "false_resolutions": 0,
+      "model": null,
+      "python_tracemalloc_peak_bytes": 268010,
+      "resolved_labeled_candidate_count": 1,
+      "runtime_seconds": 0.013587,
+      "uniquely_labeled_candidate_count": 1
+    },
+    "protocol": {
+      "bubble_depth": 3,
+      "bubble_search_node_cap": 64,
+      "k": 3,
+      "label_semantics": "reference_compatibility_proxy",
+      "limitations": [
+        "Reference compatibility is a proxy label, not biological variant truth; approximate alignment can accept near matches.",
+        "A path absent from the reference is not necessarily an error or incorrect path.",
+        "Multiple reference-compatible paths are left ambiguous; one reference does not establish variant truth.",
+        "This report evaluates graph bubble selection only and does not emit or benchmark contig assemblies.",
+        "Reads are not strand-normalized; graph orientation follows the input records."
+      ],
+      "max_reads": null,
+      "minimum_reference_identity": 0.9,
+      "protocol_sha256": "ea5ea6a7140deb6ce863893bf8929b4dac2d6c630a9d892a70683868e2a44b41",
+      "protocol_version": "2.0",
+      "read_selection": "all input reads sorted by deterministic read-ID hash",
+      "reference_label_method": "seed-and-extend edit-distance alignment against the reference and its reverse complement",
+      "reference_matching": "bounded seed-and-extend path alignment; branch labels require the configured minimum identity",
+      "sampling_algorithm": "sha256_bottom_k_by_read_id_v1",
+      "seed": 7
+    },
+    "schema_version": "1.0",
+    "training_examples": [
+      {
+        "branch": "AC",
+        "candidate_id": "bubble-b6651811e5a50b41",
+        "features": [
+          1.3862943611198906,
+          1.0986122886681098,
+          1.0986122886681098,
+          1.0986122886681098,
+          2.0,
+          2.0
+        ],
+        "label": 1
+      },
+      {
+        "branch": "AT",
+        "candidate_id": "bubble-b6651811e5a50b41",
+        "features": [
+          1.3862943611198906,
+          0.6931471805599453,
+          0.6931471805599453,
+          0.6931471805599453,
+          1.0,
+          1.0
+        ],
+        "label": 0
+      }
+    ]
+  },
+  "check": "known_bubble_positive_control",
+  "expected": {
+    "bubble_candidate_count_at_least": 1,
+    "deterministic_evidence": true,
+    "label_semantics": "reference_compatibility_proxy",
+    "uniquely_labeled_candidate_count_at_least": 1
+  },
+  "failures": [],
+  "observed": {
+    "accuracy_on_resolved_labeled": 1.0,
+    "candidate_count": 1,
+    "evidence_fingerprint_sha256": "e2df1a5883827966b6495d1b680674694b0fbd50102169d856b3107c20901105",
+    "false_resolutions": 0,
+    "k": 3,
+    "read_fingerprint_sha256": "08655cd4ccdc6423dad35a0d7b6eef1590bb89a499b101a018d6a88a6b68b822",
+    "seed": 7,
+    "uniquely_labeled_candidate_count": 1
+  },
+  "status": "passed"
+}

@@ -1,0 +1,51 @@
+{
+  "benchmark": "reference_exact_path_compatibility",
+  "candidates": [],
+  "inputs": {
+    "dataset_id": "ecoli-smoke",
+    "graph_metrics": {
+      "branching_node_count": 13,
+      "component_count": 11,
+      "edge_count": 132628,
+      "k": 31,
+      "node_count": 132639
+    },
+    "model_checkpoint_sha256": null,
+    "read_count": 20,
+    "read_files": [
+      "assembly_graph_twin\\ecoli_reads.fasta"
+    ],
+    "read_fingerprint_sha256": "336f63994feba31d3877ab8fd7b64be9033ee1ec194cbb4a348862eecf476850",
+    "reference_file": "ecoli_reference.fa",
+    "reference_sha256": "6b195feda4c66140f6762742eb8b30c2652f02b45878b174f5b00ef85ecc95d7",
+    "selected_read_count": 20,
+    "total_input_read_count": 164472
+  },
+  "metrics": {
+    "abstention_rate_on_labeled": null,
+    "accuracy_on_resolved_labeled": null,
+    "candidate_count": 0,
+    "coverage_on_labeled": null,
+    "false_resolutions": 0,
+    "model": null,
+    "python_tracemalloc_peak_bytes": 132167129,
+    "resolved_labeled_candidate_count": 0,
+    "runtime_seconds": 22.299979,
+    "uniquely_labeled_candidate_count": 0
+  },
+  "protocol": {
+    "k": 31,
+    "limitations": [
+      "Exact matching cannot label sequencing-error paths that differ from the reference.",
+      "Multiple reference-compatible paths are left ambiguous; one reference does not establish variant truth.",
+      "This report evaluates graph bubble selection only and does not emit or benchmark contig assemblies.",
+      "Reads are not strand-normalized; graph orientation follows the input records."
+    ],
+    "max_reads": 20,
+    "read_selection": "seeded reservoir sample without replacement over ordered input records",
+    "reference_matching": "exact substring match of reconstructed candidate sequence",
+    "seed": 1
+  },
+  "schema_version": "1.0",
+  "training_examples": []
+}
